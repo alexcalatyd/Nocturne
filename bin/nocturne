@@ -1,0 +1,20 @@
+#!/bin/sh
+# Nocturne — reproductor de música para la terminal.
+# Resuelve enlaces simbólicos para poder enlazarlo desde cualquier sitio.
+src=$0
+while [ -L "$src" ]; do
+    dir=$(cd -P "$(dirname "$src")" && pwd)
+    src=$(readlink "$src")
+    case $src in
+        /*) ;;
+        *) src=$dir/$src ;;
+    esac
+done
+root=$(cd -P "$(dirname "$src")/.." && pwd)
+
+if ! command -v python3 >/dev/null 2>&1; then
+    echo "Nocturne necesita python3." >&2
+    exit 1
+fi
+
+PYTHONPATH="$root${PYTHONPATH:+:$PYTHONPATH}" exec python3 -m nocturne "$@"

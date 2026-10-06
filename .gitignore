@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+
+# Secretos y config local
+.env
+.env.*
+*.pem
+*.key
+spotify.json
+*.tmp
+*.log
+
+# Sistema / editores
+.DS_Store
+.idea/
+.vscode/
