@@ -97,8 +97,8 @@ brew install ffmpeg chafa
 To clone it and have it available from anywhere:
 
 ```sh
-git clone https://github.com/alexcalatyd/nocturne.git
-cd nocturne
+git clone https://github.com/alexcalatyd/Nocturne.git
+cd Nocturne
 ln -s "$PWD/bin/nocturne" /opt/homebrew/bin/nocturne
 ```
 
