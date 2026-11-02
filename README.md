@@ -1,202 +1,173 @@
-<div align="center">
+<p align="center">
+  <img src=".github/assets/banner.svg" alt="Nocturne" width="100%">
+</p>
 
-# ♪ Nocturne
+<p align="center">
+  <img src="https://img.shields.io/badge/python-3.10+-0d1117?style=flat-square&labelColor=0d1117&color=7aa2f7">
+  <img src="https://img.shields.io/badge/ffmpeg-required-0d1117?style=flat-square&labelColor=0d1117&color=7aa2f7">
+  <img src="https://img.shields.io/badge/spotify-optional-0d1117?style=flat-square&labelColor=0d1117&color=7aa2f7">
+  <img src="https://img.shields.io/badge/pip_install-nothing-0d1117?style=flat-square&labelColor=0d1117&color=7aa2f7">
+  <img src="https://img.shields.io/badge/license-MIT-0d1117?style=flat-square&labelColor=0d1117&color=7aa2f7">
+</p>
 
-**Vive en la terminal. Empieza por la música.**
+A music player for the terminal: a folder browser, a real-time spectrum, full-color album art and your Spotify, without ever leaving the console.
 
-Un reproductor de música para la terminal: explorador de carpetas, espectro en tiempo real,<br>
-carátulas a todo color y tu Spotify, sin salir de la consola.
+No dependencies to `pip install`: the spectrum's FFT is written in plain Python.
 
-<br>
+<p align="center">
+  <img src=".github/assets/main.png" alt="Nocturne playing a track, with the library, now-playing panel and spectrum" width="860">
+</p>
 
-![Python](https://img.shields.io/badge/Python_3.10+-0d1117?style=for-the-badge&logo=python&logoColor=7aa2f7)
-![FFmpeg](https://img.shields.io/badge/FFmpeg-0d1117?style=for-the-badge&logo=ffmpeg&logoColor=7aa2f7)
-![Spotify](https://img.shields.io/badge/Spotify-0d1117?style=for-the-badge&logo=spotify&logoColor=7aa2f7)
-![Terminal](https://img.shields.io/badge/100%25_terminal-0d1117?style=for-the-badge&logo=gnubash&logoColor=7aa2f7)
+## Index
 
-![Estado](https://img.shields.io/badge/estado-en_desarrollo-7aa2f7?style=flat-square&labelColor=0d1117)
-![Licencia](https://img.shields.io/badge/licencia-MIT-7aa2f7?style=flat-square&labelColor=0d1117)
-![Dependencias](https://img.shields.io/badge/pip_install-nada-7aa2f7?style=flat-square&labelColor=0d1117)
+- [Why](#why)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Keys](#keys)
+- [The three visualizers](#the-three-visualizers)
+- [Spotify](#spotify)
+- [How it fits together](#how-it-fits-together)
+- [Under the hood](#under-the-hood)
+- [Troubleshooting](#troubleshooting)
+- [Roadmap](#roadmap)
+- [License](#license)
 
-[Funcionalidades](#-funcionalidades) ·
-[Instalación](#-instalación) ·
-[Uso](#-uso) ·
-[Teclas](#-teclas) ·
-[Spotify](#-spotify) ·
-[Por dentro](#-por-dentro) ·
-[Roadmap](#-roadmap)
+## Why
 
-<br>
+Nocturne started from a simple idea: **keep everything I use without leaving the terminal**. The first piece is a music player, and the plan is for it to grow into more tools built to live in the console.
 
-<img src=".github/assets/main.png" alt="Nocturne reproduciendo una canción, con biblioteca, carátula y espectro" width="860">
+It's built for a specific kind of person: someone who likes the look of a terminal, works keyboard-first, and would rather not get pulled into a GUI just to play a song.
 
-</div>
-
----
-
-## ✦ ¿Qué es Nocturne?
-
-Nocturne nace de una idea sencilla: **tener todo lo que uso, sin salir de la terminal**. El primer paso es un reproductor de música, y la idea es que crezca con más herramientas pensadas para vivir en la consola.
-
-Está hecho para un público concreto: quien disfruta de la estética de la terminal, trabaja a golpe de teclado y prefiere una interfaz que no le saque de ahí.
-
-- Se maneja entera con el teclado.
-- No necesita instalar nada con `pip`: la FFT del espectro está escrita en Python puro.
-- Reproduce tus archivos locales y también tu Spotify.
+- Runs entirely from the keyboard.
+- Nothing to install with `pip` — the spectrum's FFT is plain Python.
+- Plays your local files and your Spotify, from the same interface.
 
 <details>
-<summary><b>Versión en texto de la interfaz</b></summary>
+<summary><b>Text rendition of the interface</b></summary>
 <br>
 
 ```text
- ♪ NOCTURNE  ~/Music                                                                   ▶ sonando
-╭─ BIBLIOTECA ──────── 2 elem. ─╮ ╭─ REPRODUCIENDO ──────────────────────────────────────── 1/1 ─╮
-│ ↑ ..                          │ │ ▏▄▄▂▗▄▄▄▃▄▄▄▄▄▄▄▄▂                                           │
-│ ▶ HAVEN. - I Run.mp3     2:09 │ │ ▕▏▕▝▋▏▏ ▔ ▋▗▊▏▕▏▕▏  I Run                                    │
-│                               │ │ ▕▏▕▖▋▕▔▏▗ ▋▏▊▏▁▔▕▄  Haven., Kaitlin Aragon                   │
-│                               │ │ ▎▏▕▍▋▎▗▌▍▁▝▖▊▏▊▏▕▕  I Run · 2025                             │
-│                               │ │ ▕▅▅▁▝▅▅▅▘▅▄▅▅▅▅▅▅▌  Electro                                  │
-│                               │ │ ▕▏▁▝▘▔▁▝▔▏▝▁▖▏▕▋▆▎                                           │
-│                               │ │ ▗▝▆▆▎▗▖▏▏▏▕▏▏▊▝▃▘▊  MP3 · 320 kbps · 44.1 kHz · estéreo      │
-│                               │ │ ▏▌▂▘▂▕▁▕▔▏▕▆▏▗▄▞▘▊                                           │
-│                               │ │ ▖▕▁▝▄▝▝▁▂▅▃▅▖▃▄▏▃▏                                           │
-│                               │ ╰──────────────────────────────────────────────────────────────╯
-│                               │ ╭─ ESPECTRO ──────────────────────────────────────── espectro ─╮
-│                               │ │                                           ▔                  │
-│                               │ │                         ▔     ▔     ▁   ▃ ▂   ▔ ▆            │
-│                               │ │                     ▔ ▔ ▆ ▔ ▔ █ ▇ ▁ █ ▔ █ █ ▔ █ █ ▅ ▔        │
-│                               │ │                   ▔   ▂ █ █ ▁ █ █ █ █ █ █ █ █ █ █ █ █ ▔ ▔ ▔  │
-│                               │ │                   ▃ ▃ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ ▇ █ █  │
-│                               │ │           ▁ ▔ ▔ ▔ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █  │
-│                               │ │                 ▇ ▅ ▅ ▃ █ █ ▃ █ █ ▁ █ █ █ █ █ █ █ █ ▁ ▄ ▃ ▃  │
-│                               │ │                         ▇     ▅ ▇   ▆   ▅ ▆ ▇ ▅ ▄ ▇          │
-╰───────────────────────────────╯ ╰──────────────────────────────────────────────────────────────╯
-  0:03 ━━●───────────────────────────────────────────────────────────────────────────────── 2:09
-                                                                               ♪ ▱▱▱▱▱▱▱▱▱▱  70%
-  espacio sonar · ↑↓ mover · → abrir · ← atrás · ,. saltar · n/N pista · v vista · / buscar · ?…
+ ♪ NOCTURNE  ~/Music                                                                 ▶ playing
+╭─ LIBRARY ──────────── 2 items ╮ ╭─ NOW PLAYING ────────────────────────────────────── 1/1 ─╮
+│ ↑ ..                          │ │ ▏▄▄▂▗▄▄▄▃▄▄▄▄▄▄▄▄▂                                        │
+│ ▶ HAVEN. - I Run.mp3     2:09 │ │ ▕▏▕▝▋▏▏ ▔ ▋▗▊▏▕▏▕▏  I Run                                 │
+│                               │ │ ▕▏▕▖▋▕▔▏▗ ▋▏▊▏▁▔▕▄  Haven., Kaitlin Aragon                │
+│                               │ │ ▎▏▕▍▋▎▗▌▍▁▝▖▊▏▊▏▕▕  I Run · 2025                          │
+│                               │ │ ▕▅▅▁▝▅▅▅▘▅▄▅▅▅▅▅▅▌  Electro                               │
+│                               │ │ ▕▏▁▝▘▔▁▝▔▏▝▁▖▏▕▋▆▎                                        │
+│                               │ │ ▗▝▆▆▎▗▖▏▏▏▕▏▏▊▝▃▘▊  MP3 · 320 kbps · 44.1 kHz · stereo    │
+│                               │ │ ▏▌▂▘▂▕▁▕▔▏▕▆▏▗▄▞▘▊                                        │
+│                               │ │ ▖▕▁▝▄▝▝▁▂▅▃▅▖▃▄▏▃▏                                        │
+│                               │ ╰───────────────────────────────────────────────────────────╯
+│                               │ ╭─ SPECTRUM ──────────────────────────────────────spectrum ─╮
+│                               │ │                                           ▔                │
+│                               │ │                         ▔     ▔     ▁   ▃ ▂   ▔ ▆          │
+│                               │ │                     ▔ ▔ ▆ ▔ ▔ █ ▇ ▁ █ ▔ █ █ ▔ █ █ ▅ ▔      │
+│                               │ │                   ▔   ▂ █ █ ▁ █ █ █ █ █ █ █ █ █ █ █ █ ▔ ▔  │
+│                               │ │                   ▃ ▃ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ ▇ █  │
+│                               │ │           ▁ ▔ ▔ ▔ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █ █  │
+│                               │ │                 ▇ ▅ ▅ ▃ █ █ ▃ █ █ ▁ █ █ █ █ █ █ █ █ ▁ ▄ ▃  │
+│                               │ │                         ▇     ▅ ▇   ▆   ▅ ▆ ▇ ▅ ▄ ▇        │
+╰───────────────────────────────╯ ╰───────────────────────────────────────────────────────────╯
+  0:03 ━━●──────────────────────────────────────────────────────────────────────────────── 2:09
+                                                                             ♪ ▱▱▱▱▱▱▱▱▱▱  70%
+  space play · ↑↓ move · → open · ← back · ,. seek · n/N track · v view · / search · ?…
 ```
 
-El bloque de la izquierda del panel *REPRODUCIENDO* es la carátula del disco a todo color; aquí se ve en blanco y negro porque es texto plano.
+The left block of the *NOW PLAYING* panel is the album art in full color; it shows black and white here because this is plain text.
 
 </details>
 
----
+## Installation
 
-## ✨ Funcionalidades
-
-| | Funcionalidad | Qué hace |
-|:-:|---|---|
-| 📂 | **Biblioteca local** | Explorador de carpetas con etiquetas leídas en segundo plano, búsqueda, orden natural y cientos de canciones sin atascos |
-| 📊 | **Espectro en tiempo real** | FFT sobre la posición exacta de reproducción, dibujada con caracteres y sincronizada con el audio |
-| 🌊 | **Tres visualizadores** | Barras, onda (osciloscopio en braille) o los dos a la vez |
-| 🖼️ | **Carátulas a todo color** | Extrae la imagen incrustada (o un `cover.jpg`) y la dibuja en la terminal con `chafa` |
-| 🎧 | **Spotify integrado** | Navega tus playlists, álbumes y canciones guardadas, busca en el catálogo y reproduce sin salir de la terminal |
-| ⌨️ | **Todo con el teclado** | Atajos estilo vim (`hjkl`), saltos por porcentaje, aleatorio, repetición y cola |
-
-### 🌊 Los tres visualizadores
-
-- **espectro** — barras por bandas logarítmicas (40 Hz – 10 kHz) con reflejo y marcas de pico que caen despacio.
-- **onda** — osciloscopio dibujado con puntos braille, a cuádruple resolución vertical.
-- **dual** — barras arriba, onda abajo.
-
-Cambia entre ellos con `v` / `V`, o arranca con uno concreto: `nocturne --viz wave`.
-
----
-
-## 📦 Instalación
-
-| Herramienta | Para qué | Obligatorio |
+| Tool | What for | Required |
 |---|---|:-:|
-| `python3` (3.10+) | el programa | ✅ |
-| `ffplay`, `ffprobe`, `ffmpeg` | reproducir, leer etiquetas y decodificar | ✅ |
-| `chafa` | dibujar la carátula | opcional |
-| `librespot` | reproducir Spotify dentro de Nocturne | opcional |
+| `python3` (3.10+) | the program itself | ✅ |
+| `ffplay`, `ffprobe`, `ffmpeg` | playback, tag reading, decoding | ✅ |
+| `chafa` | drawing the album art | optional |
+| `librespot` | playing Spotify inside Nocturne | optional |
 
 ```sh
 brew install ffmpeg chafa
 ```
 
 > [!NOTE]
-> Nocturne está desarrollado y probado en **macOS**. Está escrito en Python y usa herramientas que también existen en Linux, pero no lo he probado allí. Una de las opciones de Spotify (el bucle de audio con BlackHole) es específica de macOS.
+> Nocturne is developed and tested on **macOS**. It's written in Python and uses tools that also exist on Linux, but it hasn't been tested there. One of the Spotify options (the audio loopback via BlackHole) is macOS-specific.
 
-Para clonarlo y tenerlo disponible desde cualquier sitio:
+To clone it and have it available from anywhere:
 
 ```sh
-git clone https://github.com/Alexxalataaa/nocturne.git
+git clone https://github.com/alexcalatyd/nocturne.git
 cd nocturne
 ln -s "$PWD/bin/nocturne" /opt/homebrew/bin/nocturne
 ```
 
----
-
-## 🚀 Uso
+## Usage
 
 ```sh
-nocturne              # la carpeta actual
-nocturne ~/Music      # una carpeta concreta
-nocturne cancion.mp3  # empieza sonando ese archivo
+nocturne              # the current folder
+nocturne ~/Music      # a specific folder
+nocturne song.mp3     # starts playing that file
 ```
 
-Si no lo has enlazado a tu `PATH`, usa `./bin/nocturne` desde la carpeta del proyecto.
+If you haven't linked it into your `PATH`, use `./bin/nocturne` from the project folder.
 
 <details>
-<summary><b>Todas las opciones</b></summary>
+<summary><b>All the options</b></summary>
 <br>
 
-| Opción | Qué hace |
+| Option | What it does |
 |---|---|
-| `-v`, `--volume 0-100` | volumen inicial (80 por defecto) |
-| `--viz bars\|wave\|dual` | visualizador con el que arranca |
-| `--no-art` | no dibujar carátulas |
-| `--symbols ...` | juego de símbolos de chafa (`vhalf+block+space` por defecto) |
-| `--fps N` | refrescos por segundo (30 por defecto) |
-| `--sync SEG` | desplaza el espectro respecto al audio si lo notas adelantado |
-| `--spotify` | arrancar directamente en el árbol de Spotify |
-| `--spotify-login` | autorizar Nocturne en tu cuenta (ver [Spotify](#-spotify)) |
-| `--spotify-device-login` | autorizar el altavoz librespot (una sola vez) |
-| `--no-spotify` | ignorar Spotify aunque esté configurado |
-| `--spotify-audio ...` | `auto`, `pipe`, `loopback` o `none` |
-| `--spotify-lag SEG` | retraso del espectro respecto a lo que ya suena |
+| `-v`, `--volume 0-100` | starting volume (80 by default) |
+| `--viz bars\|wave\|dual` | visualizer to start with |
+| `--no-art` | don't draw album art |
+| `--symbols ...` | chafa's symbol set (`vhalf+block+space` by default) |
+| `--fps N` | redraws per second (30 by default) |
+| `--sync SEG` | shifts the spectrum relative to the audio if it looks ahead |
+| `--spotify` | start directly in the Spotify tree |
+| `--spotify-login` | authorize Nocturne on your account (see [Spotify](#spotify)) |
+| `--spotify-device-login` | authorize the librespot speaker (once) |
+| `--no-spotify` | ignore Spotify even if it's configured |
+| `--spotify-audio ...` | `auto`, `pipe`, `loopback` or `none` |
+| `--spotify-lag SEG` | spectrum delay relative to what's already playing |
 
 </details>
 
----
-
-## 🎹 Teclas
+## Keys
 
 <table>
 <tr>
 <td valign="top" width="50%">
 
-**Reproducción**
+**Playback**
 
-| Tecla | Acción |
+| Key | Action |
 |---|---|
-| `espacio`, `p` | reproducir o pausar |
-| `Intro`, `→` | abrir carpeta o hacer sonar |
-| `n` / `N` | pista siguiente / anterior |
-| `.` / `,` | saltar ±5 s |
-| `>` / `<` | saltar ±30 s |
-| `0`–`9` | saltar al 0 %–90 % |
-| `s` | aleatorio |
-| `r` | repetir: no → carpeta → una |
-| `a` | encadenar pistas al terminar |
+| `space`, `p` | play or pause |
+| `enter`, `→` | open folder or play |
+| `n` / `N` | next / previous track |
+| `.` / `,` | seek ±5 s |
+| `>` / `<` | seek ±30 s |
+| `0`–`9` | jump to 0%–90% |
+| `s` | shuffle |
+| `r` | repeat: off → folder → one |
+| `a` | chain tracks when one ends |
 
 </td>
 <td valign="top" width="50%">
 
-**Navegación**
+**Navigation**
 
-| Tecla | Acción |
+| Key | Action |
 |---|---|
-| `↑` `↓` o `k` `j` | mover la selección |
-| `→` o `l` | entrar en la carpeta |
-| `←` o `h` | volver atrás |
-| `g` / `G` | principio / final |
-| `RePág` / `AvPág` | página arriba / abajo |
-| `/` | buscar (`Esc` limpia) |
-| `u` | recargar la carpeta |
-| `o` | mostrar archivos que no son audio |
+| `↑` `↓` or `k` `j` | move selection |
+| `→` or `l` | enter folder |
+| `←` or `h` | go back |
+| `g` / `G` | top / bottom |
+| `PgUp` / `PgDn` | page up / down |
+| `/` | search (`Esc` clears it) |
+| `u` | reload the folder |
+| `o` | show non-audio files |
 
 </td>
 </tr>
@@ -205,259 +176,247 @@ Si no lo has enlazado a tu `PATH`, usa `./bin/nocturne` desde la carpeta del pro
 
 **Spotify**
 
-| Tecla | Acción |
+| Key | Action |
 |---|---|
-| `S` | saltar entre tus archivos y Spotify |
-| `/` | en Spotify, `Intro` busca en el catálogo |
-| `d` | ver dispositivos a la escucha |
+| `S` | switch between your files and Spotify |
+| `/` | in Spotify, `Enter` searches the catalog |
+| `d` | show listening devices |
 
 </td>
 <td valign="top">
 
-**Sonido y vista**
+**Sound and view**
 
-| Tecla | Acción |
+| Key | Action |
 |---|---|
-| `+` / `-` | volumen ±5 |
-| `m` | silenciar |
-| `v` / `V` | cambiar de visualizador |
-| `c` | mostrar u ocultar la carátula |
-| `?` | ayuda |
-| `q` | salir |
+| `+` / `-` | volume ±5 |
+| `m` | mute |
+| `v` / `V` | switch visualizer |
+| `c` | show or hide the album art |
+| `?` | help |
+| `q` | quit |
 
 </td>
 </tr>
 </table>
 
----
+## The three visualizers
 
-## 🎧 Spotify
+- **spectrum** — bars over logarithmic bands (40 Hz – 10 kHz), with a reflection and peak markers that fall slowly.
+- **wave** — an oscilloscope drawn with Braille dots, at quadruple vertical resolution.
+- **dual** — bars on top, wave below.
 
-Nocturne puede navegar tus playlists y reproducirlas sin salir de la terminal.
+Switch between them with `v` / `V`, or start on a specific one: `nocturne --viz wave`.
+
+## Spotify
+
+Nocturne can browse your playlists and play them without leaving the terminal.
 
 > [!IMPORTANT]
-> Para controlar la reproducción hace falta **Spotify Premium**: la API de Connect no lo permite con cuentas gratuitas. Navegar y ver metadatos sí funciona sin Premium.
+> Controlling playback requires **Spotify Premium** — the Connect API doesn't allow it on free accounts. Browsing and reading metadata works without Premium.
 
-<div align="center">
-<img src=".github/assets/spotify.png" alt="Nocturne navegando las playlists de Spotify" width="760">
-</div>
+<p align="center">
+  <img src=".github/assets/spotify.png" alt="Nocturne browsing Spotify playlists" width="760">
+</p>
 
-### Conectarlo (una sola vez)
+### Connecting it (one time only)
 
-1. Entra en el [panel de desarrolladores de Spotify](https://developer.spotify.com/dashboard) y crea una app (el nombre da igual).
-2. Añade esta Redirect URI, exacta: `http://127.0.0.1:8898/callback`. Tiene que ser la IP: desde 2025 Spotify ya no acepta `localhost`.
-3. Copia el *client id* y ejecuta:
+1. Go to the [Spotify developer dashboard](https://developer.spotify.com/dashboard) and create an app (the name doesn't matter).
+2. Add this exact Redirect URI: `http://127.0.0.1:8898/callback`. It has to be the IP — since 2025 Spotify no longer accepts `localhost`.
+3. Copy the *client id* and run:
 
 ```sh
-nocturne --spotify-login --spotify-client-id TU_CLIENT_ID
+nocturne --spotify-login --spotify-client-id YOUR_CLIENT_ID
 ```
 
-Se abre el navegador, autorizas y listo. Para borrar la sesión: `nocturne --spotify-logout`.
+The browser opens, you authorize, and that's it. To clear the session: `nocturne --spotify-logout`.
 
 > [!TIP]
-> **Tus credenciales no viven en el proyecto.** El refresh token se guarda en `~/.config/nocturne/spotify.json` con permisos `600` y se renueva solo. No hace falta *client secret* porque el flujo es Authorization Code + PKCE.
+> **Your credentials never live inside the project.** The refresh token is stored at `~/.config/nocturne/spotify.json` with `600` permissions and renews itself. No *client secret* is needed, because the flow is Authorization Code + PKCE.
 
-Dentro de Nocturne, `S` salta entre tus carpetas y el árbol de Spotify: playlists, canciones guardadas, álbumes, artistas seguidos y búsqueda. Cada árbol recuerda dónde lo dejaste. La cola, el aleatorio y la repetición las sigue llevando Nocturne: las pistas se mandan de una en una para que Spotify no encadene por su cuenta.
+Inside Nocturne, `S` switches between your folders and the Spotify tree: playlists, saved tracks, albums, followed artists and search. Each tree remembers where you left it. The queue, shuffle and repeat are still handled by Nocturne — tracks are sent one at a time so Spotify doesn't chain its own queue on top.
 
-### De dónde sale el sonido
+### Where the sound comes from
 
-Nocturne **controla** la reproducción, pero el audio lo pone un dispositivo de Spotify Connect. Hay dos formas de montarlo, y de ellas depende si hay espectro:
+Nocturne **controls** playback, but the audio itself comes from a Spotify Connect device. There are two ways to set that up, and the spectrum depends on which one you pick:
 
-| | Opción | Espectro | Notas |
+| | Option | Spectrum | Notes |
 |:-:|---|:-:|---|
-| **a** | `librespot` | ✅ exacto | Todo en la terminal. Zona gris con los términos de Spotify (ver abajo) |
-| **b** | App oficial + bucle de audio | ✅ | Sin zona gris. Requiere BlackHole o similar |
-| | Ninguna | ❌ | Navegas y controlas igual, pero el espectro se queda quieto |
+| **a** | `librespot` | ✅ exact | Everything stays in the terminal. Gray-area territory re: Spotify's terms (see below) |
+| **b** | Official app + audio loopback | ✅ | No gray area. Needs BlackHole or similar |
+| | Neither | ❌ | You still browse and control playback, but the spectrum stays flat |
 
 <details>
-<summary><b>a) librespot: todo en la terminal, con espectro exacto</b></summary>
+<summary><b>a) librespot: everything in the terminal, with an exact spectrum</b></summary>
 <br>
 
-`librespot` es un cliente de Connect de ingeniería inversa que sabe escribir PCM crudo a un FIFO. Nocturne lo lee, lo manda a la salida de audio con ffmpeg y de camino se queda una copia para la FFT, así que el dibujo corresponde exactamente a lo que suena.
+`librespot` is a reverse-engineered Connect client that can write raw PCM to a FIFO. Nocturne reads it, sends it to the audio output through ffmpeg, and keeps a copy for the FFT along the way, so the drawing matches exactly what's playing.
 
 ```sh
 brew install librespot
-nocturne --spotify-device-login    # una sola vez
+nocturne --spotify-device-login    # once
 ```
 
-A partir de ahí no hay que hacer nada más: Nocturne arranca librespot solo al reproducir la primera canción y lo mata al salir. El altavoz se llama **Nocturne** y tiene prioridad sobre cualquier otro dispositivo tuyo.
+From there on there's nothing else to do: Nocturne starts librespot on its own the first time you play something and kills it on exit. The speaker shows up as **Nocturne** and takes priority over any other device you have.
 
-Ese login es aparte del de Nocturne porque librespot usa su propio client id de Spotify; las credenciales quedan en `~/.cache/nocturne/librespot`.
+That login is separate from Nocturne's own because librespot uses its own Spotify client id; the credentials live under `~/.cache/nocturne/librespot`.
 
 > [!WARNING]
-> librespot incumple los términos de servicio de Spotify. En la práctica lo usan miles de instalaciones (moOde, Volumio, spotifyd) y los baneos por esto son rarísimos, pero la cuenta es tuya y la decisión también.
+> librespot violates Spotify's terms of service. In practice it's used by thousands of installs (moOde, Volumio, spotifyd) and bans over it are very rare, but it's your account and your call.
 
 </details>
 
 <details>
-<summary><b>b) La app oficial + un bucle de audio: sin zona gris</b></summary>
+<summary><b>b) The official app + an audio loopback: no gray area</b></summary>
 <br>
 
-Deja sonando la app de Spotify y captura la salida del sistema con un dispositivo de bucle ([BlackHole](https://existential.audio/blackhole) y un dispositivo de salida múltiple, por ejemplo). Nocturne lo detecta solo y lo usa para el espectro.
+Leave the Spotify app playing and capture the system output with a loopback device ([BlackHole](https://existential.audio/blackhole) plus a multi-output device, for example). Nocturne detects it on its own and uses it for the spectrum.
 
 </details>
 
-La API de Spotify no da acceso al audio, y los endpoints de análisis (`audio-features`, `audio-analysis`) están cerrados a las apps nuevas desde noviembre de 2024. Si el espectro va desfasado respecto al sonido, ajústalo con `--spotify-lag` (segundos; por defecto 0,22).
+The Spotify API doesn't expose audio, and the analysis endpoints (`audio-features`, `audio-analysis`) have been closed to new apps since November 2024. If the spectrum looks out of sync with the sound, adjust it with `--spotify-lag` (seconds; 0.22 by default).
 
----
-
-## 🏛 Arquitectura
+## How it fits together
 
 ```mermaid
 flowchart TD
-    N([Nocturne]) --> L[Archivos locales]
+    N([Nocturne]) --> L[Local files]
     N --> S[Spotify]
 
     L --> FF["ffplay / ffprobe"]
-    L --> AR["Carátula (chafa)"]
+    L --> AR["Album art (chafa)"]
     L --> AN["PCM + FFT"]
 
-    S --> API["Web API: catálogo y control"]
-    S --> LR["librespot (FIFO de PCM)"]
-    S --> LB["Bucle de audio"]
+    S --> API["Web API: catalog and control"]
+    S --> LR["librespot (PCM FIFO)"]
+    S --> LB["Audio loopback"]
     LR & LB --> AN
 
-    FF & AR & AN & API --> UI["Interfaz curses"]
+    FF & AR & AN & API --> UI["curses interface"]
 
     classDef brand fill:#0d1117,stroke:#7aa2f7,color:#7aa2f7
     class N,UI brand
 ```
 
----
-
-## 🧠 Por dentro
+## Under the hood
 
 <details>
-<summary><b>Cómo funciona</b></summary>
+<summary><b>How it works</b></summary>
 <br>
 
-- **Reproducción**: `ffplay -nodisp`. Su reloj maestro (la posición realmente audible) se lee de stderr cada ~30 ms, así que la barra y el espectro no se desincronizan nunca. La pausa se hace con `SIGSTOP`/`SIGCONT` descontando el tiempo parado, y los saltos relanzan el proceso con `-ss`.
-- **Espectro**: al abrir una pista se decodifica entera a PCM mono 22 050 Hz en un archivo temporal (≈0,2 s) que se mapea en memoria. Cada frame se lee una ventana de 2048 muestras en la posición exacta de reproducción y se le aplica una FFT radix-2 en Python puro (~1,3 ms). Un control automático de ganancia mantiene los picos rozando el techo sin bombear.
-- **Carátula**: se extrae la imagen incrustada con ffmpeg (o se busca un `cover.jpg` al lado) y se pasa por chafa. El bloque ANSI resultante se escribe directamente en el terminal sobre un rectángulo que curses deja intacto.
-- **Etiquetas**: `ffprobe` en hilos de fondo, dando prioridad a lo que está visible en pantalla, para que una carpeta con cientos de canciones no se atasque.
-- **Spotify**: el catálogo se navega con el Web API y se reproduce por Connect, con un reloj local que se corrige contra `/me/player` cada dos segundos (más a menudo daría con el rate limit). Las conexiones HTTPS se reutilizan: abrir TCP+TLS contra la API cuesta unos 45 ms y se pagaba en cada orden. Al pasar a la pista siguiente del mismo contexto se manda `/me/player/next` en vez de un play nuevo, porque librespot ya la tiene descargada y suena al momento; los saltos que no siguen el orden (aleatorio, repetir una) sí necesitan el play. El audio ya descargado se cachea en `~/.cache/nocturne/librespot/audio` (hasta 1 GB). El espectro sale de un búfer circular de seis segundos que alimenta ffmpeg, leyendo unos milisegundos por detrás de la cabeza para compensar la latencia de la salida de audio.
+- **Playback**: `ffplay -nodisp`. Its master clock (the actually-audible position) is read from stderr every ~30 ms, so the progress bar and the spectrum never drift apart. Pausing is done with `SIGSTOP`/`SIGCONT`, discounting the paused time, and seeks relaunch the process with `-ss`.
+- **Spectrum**: when a track opens, it's fully decoded to mono 22,050 Hz PCM into a temp file (≈0.2 s) that gets memory-mapped. Every frame reads a 2,048-sample window at the exact playback position and runs a radix-2 FFT in plain Python (~1.3 ms). An automatic gain control keeps peaks just under the ceiling without pumping.
+- **Album art**: the embedded image is extracted with ffmpeg (or a `cover.jpg` next to the file is used instead) and piped through chafa. The resulting ANSI block is written straight into the terminal, over a rectangle curses leaves untouched.
+- **Tags**: `ffprobe` runs in background threads, prioritizing whatever's visible on screen, so a folder with hundreds of tracks doesn't stall.
+- **Spotify**: the catalog is browsed through the Web API and played via Connect, with a local clock corrected against `/me/player` every two seconds (more often would hit the rate limit). HTTPS connections are reused — opening TCP+TLS against the API costs about 45 ms, and that cost used to be paid on every command. Moving to the next track in the same context sends `/me/player/next` instead of a fresh play, because librespot already has it downloaded and it starts instantly; jumps that break the order (shuffle, repeat-one) do need a fresh play. Downloaded audio is cached at `~/.cache/nocturne/librespot/audio` (up to 1 GB). The spectrum comes from a six-second circular buffer feeding ffmpeg, read a few milliseconds behind the head to compensate for the audio output's own latency.
 
-Todos los procesos hijo se lanzan en su propia sesión: sin terminal de control no pueden interrogar al terminal ni robarle las pulsaciones al usuario.
+Every child process launches in its own session: with no controlling terminal, none of them can query the terminal or steal keystrokes from the user.
 
 </details>
 
 <details>
-<summary><b>Estructura del proyecto</b></summary>
+<summary><b>Project layout</b></summary>
 <br>
 
 ```text
 nocturne/
-  app.py          bucle principal, teclado y cola de reproducción
-  player.py       control de ffplay (posición, pausa, salto, volumen)
-  analysis.py     caché de PCM, FFT y bandas del espectro
-  visualizer.py   barras, osciloscopio braille y suavizado
-  artwork.py      extracción de carátulas y render con chafa
-  library.py      exploración de carpetas y metadatos
+  app.py          main loop, keyboard and playback queue
+  player.py       ffplay control (position, pause, seek, volume)
+  analysis.py     PCM cache, FFT and spectrum bands
+  visualizer.py   bars, Braille oscilloscope and smoothing
+  artwork.py      album art extraction and chafa rendering
+  library.py      folder browsing and metadata
   spotify/
-    auth.py       OAuth PKCE y custodia del refresh token
-    client.py     cliente del Web API sobre urllib
-    source.py     el catálogo de Spotify como árbol de carpetas
-    player.py     control de reproducción por Spotify Connect
-    capture.py    PCM para el espectro (FIFO de librespot o bucle de audio)
-    device.py     arranca y para librespot como altavoz propio
-    session.py    monta las piezas y decide de dónde sale el audio
-  ui.py           composición y dibujo en curses
-  theme.py        paleta azul noche
-  util.py         texto, tiempos y orden natural
-bin/nocturne      lanzador
+    auth.py       OAuth PKCE and refresh-token custody
+    client.py     Web API client over urllib
+    source.py     the Spotify catalog as a folder tree
+    player.py     playback control via Spotify Connect
+    capture.py    PCM for the spectrum (librespot FIFO or audio loopback)
+    device.py     starts and stops librespot as its own speaker
+    session.py    wires the pieces together, decides where audio comes from
+  ui.py           curses layout and drawing
+  theme.py        night-blue palette
+  util.py         text, time formatting, natural sort
+bin/nocturne      launcher
 ```
 
 </details>
 
----
-
-## 🔧 Si algo falla
+## Troubleshooting
 
 <details>
-<summary><b><code>cbreak() returned ERR</code>, o aparecen códigos como <code>[?1049h</code> sueltos</b></summary>
+<summary><b><code>cbreak() returned ERR</code>, or stray codes like <code>[?1049h</code> show up</b></summary>
 <br>
 
-El programa no ha recibido una terminal interactiva: suele pasar al lanzarlo desde el prompt de otra herramienta o a través de una tubería. Nocturne reabre `/dev/tty` por su cuenta cuando puede; si no existe ninguna, lo dice y sale. Ábrelo en una ventana de terminal normal.
+The program didn't get an interactive terminal — this usually happens when launching it from another tool's prompt, or through a pipe. Nocturne reopens `/dev/tty` on its own when it can; if none exists, it says so and exits. Open it in a normal terminal window.
 
 </details>
 
 <details>
-<summary><b>No se ve la carátula</b></summary>
+<summary><b>No album art shows up</b></summary>
 <br>
 
-Comprueba que tienes `chafa` (`brew install chafa`) y que la pista lleva imagen incrustada o un `cover.jpg` al lado. Con `c` se alterna.
+Check that you have `chafa` (`brew install chafa`) and that the track has embedded art or a `cover.jpg` next to it. `c` toggles it.
 
 </details>
 
 <details>
-<summary><b>El espectro va adelantado respecto al sonido</b></summary>
+<summary><b>The spectrum runs ahead of the sound</b></summary>
 <br>
 
-Ajústalo con `--sync 0.05` (segundos, admite negativos). En Spotify, con `--spotify-lag`.
+Adjust it with `--sync 0.05` (seconds, negative values allowed). On Spotify, use `--spotify-lag` instead.
 
 </details>
 
 <details>
-<summary><b>librespot se queda en «Connecting to AP …:4070»</b></summary>
+<summary><b>librespot gets stuck on "Connecting to AP …:4070"</b></summary>
 <br>
 
-La red bloquea ese puerto. Pasa en wifis de institutos, oficinas y hoteles, que dejan salir sólo 80 y 443. El login y la navegación siguen funcionando porque van por HTTPS; lo que no puede es reproducir. Prueba con otra conexión.
+The network is blocking that port. This happens on school, office and hotel WiFi that only lets 80 and 443 through. Login and browsing keep working because they go over HTTPS; what can't happen is playback. Try a different connection.
 
 </details>
 
 <details>
-<summary><b>«No hay ningún dispositivo de Spotify a la escucha»</b></summary>
+<summary><b>"No Spotify device is listening"</b></summary>
 <br>
 
-Nocturne manda órdenes, no abre el audio por su cuenta. Con librespot instalado y autorizado se encarga él solo; si no, necesita la app oficial abierta y sonando. Con `d` ves qué dispositivos encuentra.
+Nocturne sends commands, it doesn't open the audio output on its own. With librespot installed and authorized, it handles this by itself; otherwise it needs the official app open and playing. `d` shows which devices it finds.
 
 </details>
 
 <details>
-<summary><b>Spotify responde «esta acción requiere Premium»</b></summary>
+<summary><b>Spotify replies "this action requires Premium"</b></summary>
 <br>
 
-Es así: la API de Connect no controla cuentas gratuitas. Navegar y ver metadatos sí funciona.
+That's expected — the Connect API doesn't control free accounts. Browsing and reading metadata still works.
 
 </details>
 
 <details>
-<summary><b>Para depurar</b></summary>
+<summary><b>For debugging</b></summary>
 <br>
 
-`NOCTURNE_DEBUG_LOG=ruta` traza la navegación y las órdenes de reproducción; `NOCTURNE_LIBRESPOT_LOG=ruta` guarda la salida de librespot, que es lo único que explica por qué una pista concreta no suena.
+`NOCTURNE_DEBUG_LOG=path` traces navigation and playback commands; `NOCTURNE_LIBRESPOT_LOG=path` saves librespot's output, which is the only thing that explains why a given track isn't playing.
 
 </details>
 
----
+## Roadmap
 
-## 🧭 Roadmap
+- [x] Folder browser with tags and search
+- [x] Local playback with ffplay
+- [x] Real-time spectrum (FFT in plain Python)
+- [x] Three visualizers
+- [x] Album art with chafa
+- [x] Spotify: browsing, search and playback via Connect
+- [x] Spotify spectrum via librespot or audio loopback
+- [ ] A chat to talk to friends from the terminal
+- [ ] A browser in the terminal
+- [ ] More tools for living in the console
 
-- [x] Explorador de carpetas con etiquetas y búsqueda
-- [x] Reproducción local con ffplay
-- [x] Espectro en tiempo real (FFT en Python puro)
-- [x] Tres visualizadores
-- [x] Carátulas con chafa
-- [x] Spotify: navegación, búsqueda y reproducción por Connect
-- [x] Espectro de Spotify con librespot o bucle de audio
-- [ ] Chat para hablar con amigos desde la terminal
-- [ ] Navegador en la terminal
-- [ ] Más herramientas para vivir en la consola
+> Nocturne started as a player, and the idea is for it to become a place to do more things without leaving the terminal, so the roadmap is likely to change.
 
-> Nocturne empezó como un reproductor y la idea es que se convierta en un lugar donde hacer más cosas sin salir de la terminal, así que el roadmap puede cambiar.
+## License
 
----
+MIT — see [LICENSE](LICENSE).
 
-## 📄 Licencia
-
-Distribuido bajo la licencia [MIT](LICENSE).
-
----
-
-<div align="center">
-
-**Menos ventanas. Más terminal.**
-
-<sub>♪ Hecho para quien vive en la consola.</sub>
-
-</div>
+<p align="center"><sub>♪ Fewer windows. More terminal.</sub></p>
