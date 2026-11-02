@@ -20,3 +20,6 @@ spotify.json
 .DS_Store
 .idea/
 .vscode/
+
+# Notas internas, no publicar
+HANDOFF.md
