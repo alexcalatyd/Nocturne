@@ -94,6 +94,18 @@ brew install ffmpeg chafa
 > [!NOTE]
 > Nocturne is developed and tested on **macOS**. It's written in Python and uses tools that also exist on Linux, but it hasn't been tested there. One of the Spotify options (the audio loopback via BlackHole) is macOS-specific.
 
+### With Homebrew
+
+```sh
+brew tap alexcalatyd/tap
+brew trust alexcalatyd/tap   # Homebrew asks you to trust third-party taps once
+brew install alexcalatyd/tap/nocturne
+```
+
+It brings Python and ffmpeg with it. Add `chafa` for the album art.
+
+### From source
+
 To clone it and have it available from anywhere:
 
 ```sh
